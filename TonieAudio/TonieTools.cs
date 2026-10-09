@@ -99,7 +99,6 @@ namespace TonieFile
                     id += 0x50000000;
                 }
                 var date = DateTimeOffset.FromUnixTimeSeconds(id);
-                bool first = false;
 
                 switch (dumpFormat)
                 {
@@ -210,10 +209,6 @@ namespace TonieFile
 
                     case eDumpFormat.FormatJSON:
                         {
-                            if (!first)
-                            {
-                                message.AppendLine(",");
-                            }
                             message.AppendLine("  {");
                             message.AppendLine("    \"uid\": \"" + uid + "\",");
                             message.AppendLine("    \"audio_id\": \"" + dumpFile.Header.AudioId.ToString("X8") + "\",");

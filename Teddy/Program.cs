@@ -403,7 +403,15 @@ namespace Teddy
                             {
                                 StringBuilder message = new StringBuilder();
 
-                                TonieTools.DumpInfo(message, dumpFormat, file, TonieInfos);
+                                bool dumped = TonieTools.DumpInfo(message, dumpFormat, file, TonieInfos);
+                                if (dumped && dumpFormat == TonieTools.eDumpFormat.FormatJSON)
+                                {
+                                    if (!first)
+                                    {
+                                        Console.WriteLine(",");
+                                    }
+                                    first = false;
+                                }
 
                                 Console.Write(message.ToString());
                             }
@@ -422,11 +430,6 @@ namespace Teddy
                                 Console.WriteLine("   Exception:  " + e.GetType());
                                 Console.WriteLine("   Message:    " + e.Message);
                                 Console.WriteLine("   Stacktrace: " + e.StackTrace);
-                            }
-
-                            if (first)
-                            {
-                                first = false;
                             }
                         }
 
